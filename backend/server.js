@@ -4,6 +4,7 @@ import dotenv from 'dotenv'; // Import dotenv
 import authRoutes from './routes/auth.route.js'; // Import the authRoutes
 import userRoutes from './routes/user.route.js'; // Import the userRoutes
 import postRoutes from './routes/post.route.js'; // Import the postRoutes
+import notificationRoutes from './routes/notification.route.js'; // Import the notificationRoutes
 
 import connectMongoDB from './db/connectMongoDB.js';
 import cookieParser from 'cookie-parser';
@@ -24,9 +25,11 @@ app.use(express.json()); // Use express.json() to parse the body of the request
 app.use(express.urlencoded({extended: true})); // to parse form data(req.body)
 
 app.use(cookieParser()); // Use cookieParser to parse the cookies
+
 app.use("/api/auth",authRoutes); // Use the authRoutes
 app.use("/api/user",userRoutes); // Use the userRoutes
 app.use("/api/posts",postRoutes); // Use the userRoutes
+app.use("/api/notifications",notificationRoutes); // Use the notificationRoutes
 
 
 app.listen(PORT,() => {
