@@ -7,10 +7,11 @@ import User from "../models/user.model.js";
 export const getUserProfile = async (req, res) => {
   const { username } = req.params; // Get the username from the request params
   try {
-    if (username !== req.user.username) {
-      // console.log(username, req.user.username);
-      return res.status(403).json({ error: "Forbidden: Access Denied" }); // If the username in the request params is not the same as the logged in user's username, return an error
-    }
+    // if (username !== req.user.username) {
+    //   // console.log(username, req.user.username);
+    //   return res.status(403).json({ error: "Forbidden: Access Denied" }); // If the username in the request params is not the same as the logged in user's username, return an error
+    // }
+    
     const user = await User.findOne({ username }).select("-password"); // Find the user by username and select all fields except password
     if (!user) {
       return res.status(404).json({ error: "User not found" });
