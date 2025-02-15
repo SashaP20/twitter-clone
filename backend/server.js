@@ -1,9 +1,9 @@
 import express from 'express';
 import dotenv from 'dotenv'; // Import dotenv
 
-import authRoutes from './routes/auth.routes.js'; // Import the authRoutes
-import userRoutes from './routes/user.routes.js'; // Import the userRoutes
-import postRoutes from './routes/post.routes.js'; // Import the postRoutes
+import authRoutes from './routes/auth.route.js'; // Import the authRoutes
+import userRoutes from './routes/user.route.js'; // Import the userRoutes
+import postRoutes from './routes/post.route.js'; // Import the postRoutes
 
 import connectMongoDB from './db/connectMongoDB.js';
 import cookieParser from 'cookie-parser';
