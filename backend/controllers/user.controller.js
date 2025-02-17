@@ -98,6 +98,7 @@ export const getSuggestedUsers = async (req, res) => {
 	}
 };
 
+
 export const updateUser = async (req, res) => {
   const { fullName, username, email, currentPassword, newPassword, bio, link} = req.body; // Get the fields from the request body
 
