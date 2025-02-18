@@ -1,3 +1,4 @@
+import path from 'path'; // Import path
 import express from 'express';
 import dotenv from 'dotenv'; // Import dotenv
 
@@ -20,6 +21,7 @@ cloudinary.config({
 
 const app = express(); // Create an express app
 const PORT = process.env.PORT || 5000; // Set the port to 8000
+const __dirname = path.resolve();
 
 app.use(express.json({limit: "5mb"})); // Use express.json() to parse the body of the request
 app.use(express.urlencoded({extended: true})); // to parse form data(req.body)
@@ -30,6 +32,13 @@ app.use("/api/auth",authRoutes); // Use the authRoutes
 app.use("/api/users",userRoutes); // Use the userRoutes
 app.use("/api/posts",postRoutes); // Use the userRoutes
 app.use("/api/notifications",notificationRoutes); // Use the notificationRoutes
+
+if(process.env.NODE_ENV === "production"){
+    app.use(express.static(path.join(__dirname,"frontend/dist")));
+    app.get("*",(req,res) => {
+        res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
+    });
+}
 
 
 app.listen(PORT,() => {
